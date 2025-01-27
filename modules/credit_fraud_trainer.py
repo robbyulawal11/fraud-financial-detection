@@ -4,8 +4,7 @@ import tensorflow as tf
 from keras.utils.vis_utils import plot_model
 import tensorflow_transform as tft 
  
-from customer_churn_transform import (
-    CATEGORICAL_FEATURES,
+from modules.credit_fraud_transform import (
     LABEL_KEY,
     NUMERICAL_FEATURES,
     transformed_name,
@@ -19,10 +18,6 @@ def get_model(show_summary=True):
  
     # one-hot categorical features
     input_features = []
-    for key, dim in CATEGORICAL_FEATURES.items():
-        input_features.append(
-            tf.keras.Input(shape=(dim + 1,), name=transformed_name(key))
-        )
     
     for feature in NUMERICAL_FEATURES:
         input_features.append(
